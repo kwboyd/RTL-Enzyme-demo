@@ -20,7 +20,7 @@ const App = () => {
 
   return (
     <div>
-      <Message message={message} />
+      {message && <Message message={message} />}
       <Form onSubmit={handleSubmit} />
     </div>
   );
