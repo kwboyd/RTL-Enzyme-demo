@@ -2,6 +2,7 @@ import React from "react";
 import { mount } from "enzyme";
 import ApiService from "../api.service";
 import App from "../App";
+import { act } from "react-dom/test-utils";
 
 const myName = "Kate";
 const serverMessage = "Hello from the server";
@@ -23,19 +24,27 @@ describe("<App />", () => {
 
       const submitButton = wrapper.find("#submit-button");
 
-      submitButton.simulate("click");
+      submitButton.simulate("submit");
 
-      await Promise.resolve();
+      // doesn't work in enzyme because it does not simulate DOM behavior
+      // the onClick of a type="submit" button does not trigger the form submit
+      // submitButton.simulate("click");
+
+      // act indicates that a hook (useEffect) will need to trigger
+      await act(async () => {
+        // flush out your promises
+        await Promise.resolve();
+      });
+
+      // update the rendered component
       wrapper.update();
+
       console.log(wrapper.debug());
-      await Promise.resolve();
-      wrapper.update();
-      await Promise.resolve();
-      wrapper.update();
 
       const messageDisplay = wrapper.find("#server-message");
-      console.log(messageDisplay);
-      expect(messageDisplay.text().includes(serverMessage)).toBe(true);
+      expect(messageDisplay.text().includes(serverMessage.toUpperCase())).toBe(
+        true
+      );
     });
   });
 });
