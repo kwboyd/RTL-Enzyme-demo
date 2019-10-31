@@ -8,15 +8,15 @@ const myName = "Kate";
 const serverMessage = "Hello from the server";
 
 beforeEach(() => {
-  jest.spyOn(ApiService, "validateValues").mockResolvedValue(true);
+  jest.spyOn(ApiService, "validateValues").mockResolvedValueOnce(true);
   jest
     .spyOn(ApiService, "submitValues")
-    .mockResolvedValue({ message: serverMessage });
+    .mockResolvedValueOnce({ message: serverMessage });
 });
 
 describe("<App />", () => {
   describe("name entered is valid", () => {
-    it("should submit the name entered to the API", async () => {
+    it("should display the message in all caps after submitting name to the server", async () => {
       const wrapper = mount(<App />);
 
       const input = wrapper.find('[name="name-input"]');
@@ -38,8 +38,6 @@ describe("<App />", () => {
 
       // update the rendered component
       wrapper.update();
-
-      console.log(wrapper.debug());
 
       const messageDisplay = wrapper.find("#server-message");
       expect(messageDisplay.text().includes(serverMessage.toUpperCase())).toBe(

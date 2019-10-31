@@ -1,7 +1,7 @@
 import React from "react";
 
 const Message = ({ message }) => {
-  return <p id="server-message">Server says: {message}</p>;
+  return <span id="server-message">{message}</span>;
 };
 
 export default Message;
