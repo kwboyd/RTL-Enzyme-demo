@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { validateValues, submitValues } from "./api.service";
+import ApiService from "./api.service";
 import Form from "./Form";
 import Message from "./Message";
 
@@ -8,9 +8,9 @@ const App = () => {
 
   const handleSubmit = async formValues => {
     try {
-      const validData = await validateValues(formValues);
+      const validData = await ApiService.validateValues(formValues);
       if (validData) {
-        const { message } = await submitValues(formValues);
+        const { message } = await ApiService.submitValues(formValues);
         setMessage(message);
       }
     } catch (error) {

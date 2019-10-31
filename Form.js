@@ -22,7 +22,12 @@ const Form = ({ onSubmit }) => {
         value={name}
       />
       <div>
-        <button type="submit">Submit</button>
+        <button type="submit" id="submit-button">
+          Submit
+        </button>
+      </div>
+      <div>
+        <button type="button">Cancel</button>
       </div>
     </form>
   );
