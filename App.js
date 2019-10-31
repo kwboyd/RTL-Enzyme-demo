@@ -8,15 +8,8 @@ const App = () => {
   const [formattedMessage, setFormattedMessage] = useState(null);
 
   const handleSubmit = async formValues => {
-    try {
-      const validData = await ApiService.validateValues(formValues);
-      if (validData) {
-        const { message } = await ApiService.submitValues(formValues);
-        setMessage(message);
-      }
-    } catch (error) {
-      console.log(error);
-    }
+    const { message } = await ApiService.submitValues(formValues);
+    setMessage(message);
   };
 
   useEffect(() => {

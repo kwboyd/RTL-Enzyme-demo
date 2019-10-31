@@ -8,7 +8,6 @@ const myName = "Kate";
 const serverMessage = "Hello from the server";
 
 beforeEach(() => {
-  jest.spyOn(ApiService, "validateValues").mockResolvedValueOnce(true);
   jest
     .spyOn(ApiService, "submitValues")
     .mockResolvedValueOnce({ message: serverMessage });
