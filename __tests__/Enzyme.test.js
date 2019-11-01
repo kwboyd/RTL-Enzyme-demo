@@ -25,9 +25,9 @@ describe("<App />", () => {
 
       submitButton.simulate("submit");
 
+      // submitButton.simulate("click");
       // doesn't work in enzyme because it does not simulate DOM behavior
       // the onClick of a type="submit" button does not trigger the form submit
-      // submitButton.simulate("click");
 
       // act indicates that a hook (useEffect) will need to trigger
       await act(async () => {
